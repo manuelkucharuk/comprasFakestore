@@ -2,13 +2,14 @@ import {
     BrowserRouter as Router
 } from "react-router-dom"
 
-import './App.css';
-import Public from './Routes/Public';
+import Public from './Routes/Public'
+import NavBar from './Components/NavBar'
 
 function App() {
-  return (
+    return (
       <Router>
-          <Public />
+          <NavBar/>
+          <Public/>
       </Router>
   );
 }

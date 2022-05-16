@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
-import {getAllProductos} from '../Services/productosService'
+import { getAllProductos, getProductosByCategoria } from '../Services/productosService'
 import Producto from './Producto'
-import Spinner from './Spinner'
+import Spinner from 'react-bootstrap/Spinner'
 
-const Productos = ()=>{
+const Productos = (props)=>{
     const [productos,setProductos] = useState([])
     const [loading,setLoading] = useState(true)
 
@@ -11,26 +11,35 @@ const Productos = ()=>{
         ()=> {
             const getProductos = async () => {
                 setLoading(true)
-                const prods = await getAllProductos('electronics')
+                let prods
+                if(!props.categoria || props.categoria === 'all')
+                    prods = await getAllProductos()
+                else
+                    prods = await getProductosByCategoria(props.categoria)
                 setProductos(prods)
                 setLoading(false)
             }
-            getProductos()
+            getProductos().catch(e=>console.log(e))
         },
-        []
+        [props.categoria]
     )
 
     if(!loading) {
         return (
-            <div>
-                {productos.map(p => <Producto key={p.id} id={p.id} title={p.title} price={p.price} image={p.image}/>)}
+            <div className='block'>
+                {productos.map(p => <Producto className='block'
+                                              key={p.id}
+                                              id={p.id}
+                                              title={p.title}
+                                              price={p.price}
+                                              image={p.image}/>)}
             </div>
         )
     }
     else {
         return (
             <div>
-               <Spinner/>
+               <Spinner animation="border" size="xl"/>
             </div>
         )
     }

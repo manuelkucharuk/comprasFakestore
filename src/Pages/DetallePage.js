@@ -5,8 +5,8 @@ import DetalleProducto from '../Components/DetalleProducto'
 const DetallePage = ()=>{
     const {id} = useParams()
     return(
-        <div>
-            <h1>Detalle de producto</h1>
+        <div className='ml-4'>
+            <h1 className='title is-2'>Detalle de producto</h1>
             <DetalleProducto id={id}/>
         </div>
     )
