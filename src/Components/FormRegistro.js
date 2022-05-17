@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+
 
 import firebase from '../Config/firebase'
 import CampoRegistro from './CampoRegistro'
@@ -18,8 +21,6 @@ const FormRegistro = (props)=>{
         let password = form.password
         try{
             const data = await firebase.auth.createUserWithEmailAndPassword(email,password)
-            console.log(data)
-            console.log("Usuario creado")
         } catch (err) {
             console.log("Error",err)
         }

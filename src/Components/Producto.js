@@ -1,25 +1,26 @@
 import React from 'react'
 import './Producto.css';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 import {Link} from 'react-router-dom'
 
 const Producto = (props)=>{
     const {id,image,title,price} = props
     return(
-        <div className="producto">
-            <div className='imgProductoDiv'>
+        <Row sm={8} className='producto'>
+            <Col sm={2}>
                 <img className="imgProductoImg" src={image} alt=''/>
-            </div>
-            <div className = "datos">
+            </Col>
+            <Col>
                 <p className = "titleProducto">{title}</p>
                 <p className = "price">Us$ {price}</p>
                 <p className = "pDetalle">
-                    <Link to={"/producto/"+id}>
-                        <button className="button is-link is-medium">Detalle</button>
-                    </Link>
+                    <Button variant='primary' as={Link} to={"/producto/"+id}>Detalle</Button>
                 </p>
-            </div>
-        </div>
+            </Col>
+        </Row>
     )
 }
 

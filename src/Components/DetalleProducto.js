@@ -3,7 +3,11 @@ import { useNavigate  } from 'react-router-dom'
 
 import './Producto.css';
 import { getProductoById } from '../Services/productosService'
-import Spinner from './Spinner'
+
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 const DetalleProducto = (props)=>{
     const {id} = props
@@ -27,31 +31,26 @@ const DetalleProducto = (props)=>{
 
     if(!loading) {
         return(
-            <div className="producto">
-                <div className="imgProductoDiv">
-                    <img className='imgProductoImg' src={producto.image} alt=''/>
-                </div>
-                <div className="datos">
-                    <p className="title is-4">{producto.title}</p>
+            <Row sm={8}>
+                <Col sm={4}>
+                    <img className="imgProductoImg" src={producto.image} alt=''/>
+                </Col>
+                <Col>
+                    <h2>{producto.title}</h2>
                     <p>{producto.description}</p>
-                    <p className="price"><b>Precio: Us$ {producto.price}</b></p>
+                    <p><b>Precio: Us$ {producto.price}</b></p>
                     <p>Rating: {producto.rating.rate} <i>(basado en {producto.rating.count} opiniones)</i></p>
-                    <div className='buttons'>
-                        <button className='button is-primary is-medium'>Comprar</button>
-                        <button className='button is-medium' onClick={() => navigate(-1)}>Atrás</button>
-                    </div>
-                </div>
-
-
-            </div>
-
+                    <Button variant='primary' size='lg'>Comprar</Button>
+                    <Button variant='outline-info' onClick={() => navigate(-1)}>Atrás</Button>
+                </Col>
+            </Row>
         )
     }
 
     else {
         return (
             <div>
-                <Spinner/>
+                <Spinner animation="border" size="xl"/>
             </div>
         )
     }

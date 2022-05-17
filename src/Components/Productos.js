@@ -3,6 +3,7 @@ import { getAllProductos, getProductosByCategoria } from '../Services/productosS
 import Producto from './Producto'
 import Spinner from 'react-bootstrap/Spinner'
 
+
 const Productos = (props)=>{
     const [productos,setProductos] = useState([])
     const [loading,setLoading] = useState(true)
@@ -26,14 +27,14 @@ const Productos = (props)=>{
 
     if(!loading) {
         return (
-            <div className='block'>
+            <>
                 {productos.map(p => <Producto className='block'
                                               key={p.id}
                                               id={p.id}
                                               title={p.title}
                                               price={p.price}
                                               image={p.image}/>)}
-            </div>
+            </>
         )
     }
     else {

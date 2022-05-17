@@ -1,3 +1,6 @@
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+
 import Productos from '../Components/Productos'
 import Categorias from '../Components/Categorias'
 
@@ -19,11 +22,15 @@ const HomePage = ()=>{
 
 
     return(
-        <div className='ml-4'>
+        <Container>
             <h1>Listado de productos</h1>
-            <Categorias onChange={handleCategoriaChange} categoriaSeleccionada={categoria}/>
-            <Productos categoria={categoria}/>
-        </div>
+            <Row sm={4}>
+                <Categorias onChange={handleCategoriaChange} categoriaSeleccionada={categoria}/>
+            </Row>
+            <Row>
+                <Productos categoria={categoria}/>
+            </Row>
+        </Container>
     )
 }
 
