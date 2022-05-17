@@ -13,12 +13,18 @@ const Productos = (props)=>{
             const getProductos = async () => {
                 setLoading(true)
                 let prods
-                if(!props.categoria || props.categoria === 'all')
+                if(!props.categoria || props.categoria === 'all') {
                     prods = await getAllProductos()
-                else
+                    setProductos(prods)
+                    setLoading(false)
+                }
+                else{
                     prods = await getProductosByCategoria(props.categoria)
-                setProductos(prods)
-                setLoading(false)
+                    setProductos(prods)
+                    setLoading(false)
+                }
+
+
             }
             getProductos().catch(e=>console.log(e))
         },

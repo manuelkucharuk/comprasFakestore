@@ -20,9 +20,13 @@ const DetalleProducto = (props)=>{
         ()=> {
             const getProducto = async () => {
                 setLoading(true)
-                const prod = await getProductoById(id)
-                setProducto(prod)
-                setLoading(false)
+                try {
+                    const prod = await getProductoById(id)
+                    setProducto(prod)
+                    setLoading(false)
+                } catch(err){
+                    console.log(err)
+                }
             }
             getProducto()
         },

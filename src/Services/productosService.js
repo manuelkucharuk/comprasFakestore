@@ -1,7 +1,6 @@
 export async function getAllProductos(){
     let jsonProductos = await fetch('https://fakestoreapi.com/products/').then(res=>res.json())
     return jsonProductos
-
 }
 
 export async function getAllCategorias(){
