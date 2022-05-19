@@ -24,7 +24,7 @@ const HomePage = ()=>{
     return(
         <Container>
             <h1>Listado de productos</h1>
-            <Row sm={4}>
+            <Row sm={4} style={{marginBottom: '10px'}}>
                 <Categorias onChange={handleCategoriaChange} categoriaSeleccionada={categoria}/>
             </Row>
             <Row>

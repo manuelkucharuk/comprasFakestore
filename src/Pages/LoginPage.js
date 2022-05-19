@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 
 import firebase from '../Config/firebase'
 import CampoRegistro from '../Components/CampoRegistro'
+import AlertCustom from '../Components/AlertCustom'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -10,8 +11,10 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+
 const LoginPage = ()=>{
     const [form,setForm] = useState({user:'', password:''})
+    const [alert,setAlert] = useState({text:'',variant:''})
     let navigate = useNavigate();
 
     const handleSubmit = async (e)=>{
@@ -20,11 +23,13 @@ const LoginPage = ()=>{
         let user = form.user
         let password = form.password
         try {
-            const data = await firebase.auth.signInWithEmailAndPassword(user, password)
-            navigate("/")
-            console.log(data)
+            const respLogin = await firebase.auth.signInWithEmailAndPassword(user, password)
+            const nombre = await firebase.getNombreById(respLogin.user.uid)
+
+            setAlert({text:'Bienvenido '+nombre, variant:'success'})
+            setTimeout(()=>navigate("/"),2000)
         } catch (err) {
-            console.log(err)
+            setAlert({text:err.message,variant:'danger'})
         }
     }
 
@@ -58,6 +63,9 @@ const LoginPage = ()=>{
                         <Button variant='primary' type='submit'>Enviar</Button>
                     </Form>
                 </Col>
+            </Row>
+            <Row>
+                <AlertCustom {...alert}/>
             </Row>
         </Container>
     )

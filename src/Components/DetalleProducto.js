@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
+import { Cart } from 'react-bootstrap-icons';
 
 const DetalleProducto = (props)=>{
     const {id} = props
@@ -44,7 +45,9 @@ const DetalleProducto = (props)=>{
                     <p>{producto.description}</p>
                     <p><b>Precio: Us$ {producto.price}</b></p>
                     <p>Rating: {producto.rating.rate} <i>(basado en {producto.rating.count} opiniones)</i></p>
-                    <Button variant='primary' size='lg'>Comprar</Button>
+                    <Button variant='primary' size='lg'>
+                        <Cart/> Agregar al carrito
+                    </Button>
                     <Button variant='outline-info' onClick={() => navigate(-1)}>Atrás</Button>
                 </Col>
             </Row>
