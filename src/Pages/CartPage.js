@@ -7,7 +7,7 @@ import Categorias from '../Components/Home/Categorias'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-const HomePage = ()=>{
+const CartPage = ()=>{
     const {categoriaUrl} = useParams()
     const [categoria,setCategoria] = useState(categoriaUrl)
     const navigate = useNavigate();
@@ -34,4 +34,4 @@ const HomePage = ()=>{
     )
 }
 
-export default HomePage
+export default CartPage

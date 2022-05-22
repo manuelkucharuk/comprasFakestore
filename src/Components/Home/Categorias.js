@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {getAllCategorias} from '../Services/productosService'
+import {getAllCategorias} from '../../Services/productosService'
 import Form from 'react-bootstrap/Form'
 
 
@@ -15,7 +15,8 @@ const Categorias = (props)=>{
                 setCategorias(['all',...cats])
                 setLoading(false)
             }
-            getCategorias()
+            try{getCategorias()}
+            catch(e){console.log(e)}
         },
         []
     )

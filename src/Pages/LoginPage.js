@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 import firebase from '../Config/firebase'
-import CampoRegistro from '../Components/CampoRegistro'
+import CampoRegistro from '../Components/Registro/CampoRegistro'
 import AlertCustom from '../Components/AlertCustom'
+import AuthContext from '../Context/AuthContext'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -15,7 +16,8 @@ import Button from 'react-bootstrap/Button'
 const LoginPage = ()=>{
     const [form,setForm] = useState({user:'', password:''})
     const [alert,setAlert] = useState({text:'',variant:''})
-    let navigate = useNavigate();
+    let navigate = useNavigate()
+    const context = useContext(AuthContext)
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -24,10 +26,15 @@ const LoginPage = ()=>{
         let password = form.password
         try {
             const respLogin = await firebase.auth.signInWithEmailAndPassword(user, password)
-            const nombre = await firebase.getNombreById(respLogin.user.uid)
+            const userId = respLogin.user?.uid
 
-            setAlert({text:'Bienvenido '+nombre, variant:'success'})
-            setTimeout(()=>navigate("/"),2000)
+            const respUser = await firebase.db.collection('usuarios').where('user','==',userId).get()
+            const dataUser =  respUser.docs[0]?.data()
+            context.loginUser(dataUser)
+
+            setAlert({text:'Bienvenido '+dataUser.nombre, variant:'success'})
+
+            setTimeout(()=>navigate("/"),1000)
         } catch (err) {
             setAlert({text:err.message,variant:'danger'})
         }

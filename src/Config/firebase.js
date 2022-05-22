@@ -2,11 +2,6 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
 
-firebase.getNombreById =  async (userId) => {
-    const respUser = await firebase.db.collection('usuarios').where('user','==',userId).get()
-    const nombre =  respUser.docs[0]?.data().nombre
-    return nombre
-}
 
 const firebaseConfig = {
     apiKey: "AIzaSyBH_0YdAVmiq7a-QRBCD9aaAhKwmxHIk44",

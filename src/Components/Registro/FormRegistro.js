@@ -5,10 +5,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 
-import firebase from '../Config/firebase'
+import firebase from '../../Config/firebase'
 import CampoRegistro from './CampoRegistro'
-import camposRegistro from '../Services/registroService'
-import AlertCustom from './AlertCustom'
+import camposRegistro from '../../Services/registroService'
+import AlertCustom from '../AlertCustom'
 
 const FormRegistro = (props)=>{
     const campos = camposRegistro
@@ -41,7 +41,7 @@ const FormRegistro = (props)=>{
                     )
 
                 setAlert({text:'Bienvenido '+form.nombre+'!', variant:'success'})
-                setTimeout(()=>navigate("/login"),2000)
+                setTimeout(()=>navigate("/login"),1000)
 
             } catch (err) {
                 setAlert({text: err.message, variant:'danger' })

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
-import { getAllProductos, getProductosByCategoria } from '../Services/productosService'
-import Producto from './Producto'
-import Spinner from 'react-bootstrap/Spinner'
+import { getAllProductos, getProductosByCategoria } from '../../Services/productosService'
+import Producto from '../Producto'
+import Loading from '../Loading'
 
 
 const Productos = (props)=>{
@@ -23,37 +23,22 @@ const Productos = (props)=>{
                     setProductos(prods)
                     setLoading(false)
                 }
-
-
             }
             getProductos().catch(e=>console.log(e))
         },
         [props.categoria]
     )
 
-    if(!loading) {
-        return (
-            <>
-                {productos.map(p => <Producto className='block'
-                                              key={p.id}
-                                              id={p.id}
-                                              title={p.title}
-                                              price={p.price}
-                                              image={p.image}/>)}
-            </>
-        )
-    }
-    else {
-        return (
-            <div>
-               <Spinner animation="border" size="xl"/>
-            </div>
-        )
-    }
-
-
-
-
+    return (
+        <Loading loading={loading}>
+            {productos.map(p => <Producto className='block'
+                                       key={p.id}
+                                       id={p.id}
+                                       title={p.title}
+                                       price={p.price}
+                                       image={p.image}/>)}
+        </Loading>
+    )
 }
 
 export default Productos
