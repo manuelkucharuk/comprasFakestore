@@ -5,7 +5,10 @@ import Button from 'react-bootstrap/Button'
 const Acciones = (props)=>{
     const {onVaciar} = props
     return(
-        <Button onClick={onVaciar}>Vaciar Carrito</Button>
+        <>
+            <Button onClick={onVaciar}>Vaciar Carrito</Button>
+            <Button onClick={''}>Comprar</Button>
+        </>
     )
 }
 

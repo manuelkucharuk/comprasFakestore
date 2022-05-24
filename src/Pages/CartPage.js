@@ -10,9 +10,10 @@ import Acciones from '../Components/Cart/Acciones'
 
 const CartPage = (props)=>{
     const [contenido,setContenido] = useState(JSON.parse(localStorage.getItem("cart")) || {})
-
+    const [key,setKey] = useState(0)
     const vaciarCart = ()=>{
         setContenido({})
+        setKey(key+1) //Sino no se actualiza <Cart>
         localStorage.removeItem("cart")
     }
 
@@ -21,10 +22,10 @@ const CartPage = (props)=>{
         <Container>
             <h1>Carro de compras <CartIcon/></h1>
             <Row>
-                <Cart contenido={contenido}/>
+                <Cart key={key} contenido={contenido}/>
             </Row>
             <Row>
-                <Acciones contenido={contenido} onVaciar={vaciarCart}/>
+                <Acciones key={key+1} contenido={contenido} onVaciar={vaciarCart}/>
             </Row>
         </Container>
     )
