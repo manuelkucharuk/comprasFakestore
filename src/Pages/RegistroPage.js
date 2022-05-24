@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import FormRegistro from '../Components/Registro/FormRegistro'
+import FormRegistro from '../Components/Registro'
 
 const RegistroPage = ()=>{
     return(

@@ -3,11 +3,15 @@ import Button from 'react-bootstrap/Button'
 import { Cart } from 'react-bootstrap-icons'
 import { useNavigate  } from 'react-router-dom'
 
-const agregarAlCarrito = (idProducto)=>{
-    localStorage.setItem("")
-}
+
 
 const Acciones = (props)=>{
+    const agregarAlCarrito = (idProducto)=>{
+        let cart = JSON.parse(localStorage.getItem("cart")) || {}
+        cart[idProducto] =  cart[idProducto]+1 || 1
+        localStorage.setItem("cart",JSON.stringify(cart))
+    }
+
     const navigate = useNavigate()
     const idProducto = props.idProducto
     return(

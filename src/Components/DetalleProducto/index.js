@@ -5,17 +5,12 @@ import { getProductoById } from '../../Services/productosService'
 import AuthContext from '../../Context/AuthContext'
 import Loading from '../Loading'
 import InfoProducto from './InfoProducto'
-import Acciones from './Acciones'
 
 const DetalleProducto = (props)=>{
     const {id} = props
 
     const [producto,setProducto] = useState([])
     const [loading,setLoading] = useState(true)
-
-    const agregarAlCarrito = (idProducto) =>{
-
-    }
 
     useEffect(
         ()=> {

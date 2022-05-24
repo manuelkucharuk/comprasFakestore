@@ -1,34 +1,30 @@
+import React from 'react'
+import {useState, useEffect, useCallback} from 'react'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import {Cart as CartIcon } from 'react-bootstrap-icons'
 
-import Productos from '../Components/Home/Productos'
-import Categorias from '../Components/Home/Categorias'
+import Cart from '../Components/Cart/index'
+import Acciones from '../Components/Cart/Acciones'
 
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+const CartPage = (props)=>{
+    const [contenido,setContenido] = useState(JSON.parse(localStorage.getItem("cart")) || {})
 
-const CartPage = ()=>{
-    const {categoriaUrl} = useParams()
-    const [categoria,setCategoria] = useState(categoriaUrl)
-    const navigate = useNavigate();
-
-    const handleCategoriaChange = (ev) => setCategoria(ev.target.value)
-    useEffect(
-        ()=>{
-            categoria && navigate('/categoria/' + categoria, { replace: true })
-        }
-        ,[categoria,navigate]
-    )
+    const vaciarCart = ()=>{
+        setContenido({})
+        localStorage.removeItem("cart")
+    }
 
 
-    return(
+    return (
         <Container>
-            <h1>Listado de productos</h1>
-            <Row sm={4} style={{marginBottom: '10px'}}>
-                <Categorias onChange={handleCategoriaChange} categoriaSeleccionada={categoria}/>
+            <h1>Carro de compras <CartIcon/></h1>
+            <Row>
+                <Cart contenido={contenido}/>
             </Row>
             <Row>
-                <Productos categoria={categoria}/>
+                <Acciones contenido={contenido} onVaciar={vaciarCart}/>
             </Row>
         </Container>
     )
