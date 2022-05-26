@@ -5,6 +5,7 @@ import Acciones from './Acciones'
 
 const InfoProducto = (props)=>{
     const producto = props.producto
+
     return(
         <>
             <Col sm={4}>
@@ -16,7 +17,7 @@ const InfoProducto = (props)=>{
                 <p><b>Precio: Us$ {producto.price}</b></p>
                 <p>Rating: {producto.rating.rate} <i>(basado en {producto.rating.count} opiniones)</i>
                 </p>
-                <Acciones idProducto={producto.id}/>
+                <Acciones producto={producto}/>
             </Col>
         </>
     )

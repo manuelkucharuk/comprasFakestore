@@ -1,42 +1,46 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+
+import Row from 'react-bootstrap/Row'
 
 import CartElement from './CartElement'
+import Acciones from './Acciones'
+import Total from './Total'
 
+import CartContext from '../../Context/CartContext'
 
 const Cart = (props) =>{
-    const [contenido,setContenido] = useState(props.contenido)
-    const [cart,setCart] = useState([])
-    const [loading,setLoading] = useState(false)
-
-    const handleQuitar = ()=>{
-
-    }
-
-    useEffect(
-        ()=> {
-            setLoading(true)
-            let newCart = []
-            for(let idProducto in contenido){
-                const cartElement = {'idProducto': idProducto, cantidad: contenido[idProducto]}
-                newCart = [...newCart,cartElement]
-            }
-            setCart(newCart)
-            setLoading(false)
-        },
-        [contenido]
-    )
-
-
+    const context = useContext(CartContext)
     return(
-        cart.map(elem =>
-            <CartElement
-                key={elem.idProducto}
-                idProducto={elem.idProducto}
-                cantidad={elem.cantidad}
-                onQuitar={()=>{handleQuitar()}}
-            />
-        )
+        <>
+            {
+                context.cart.map(elem=>
+                    <CartElement
+                        key={elem.producto.idProducto}
+                        producto={elem.producto}
+                    />
+                )
+            }
+            {
+                context.cart.length > 0 &&
+                <>
+                    <Row>
+                        <Total/>
+                    </Row>
+
+
+                    <Row>
+                        <Acciones/>
+                    </Row>
+                </>
+            }
+            {
+                context.cart.length == 0 &&
+                <Row>
+                    <b>El carrito está vacío</b>
+                </Row>
+            }
+        </>
     )
 }
 

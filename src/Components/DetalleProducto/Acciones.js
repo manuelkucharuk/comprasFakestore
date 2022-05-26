@@ -1,22 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button'
 import { Cart } from 'react-bootstrap-icons'
 import { useNavigate  } from 'react-router-dom'
 
+import CartContext from '../../Context/CartContext'
+
 
 
 const Acciones = (props)=>{
-    const agregarAlCarrito = (idProducto)=>{
-        let cart = JSON.parse(localStorage.getItem("cart")) || {}
-        cart[idProducto] =  cart[idProducto]+1 || 1
-        localStorage.setItem("cart",JSON.stringify(cart))
-    }
-
+    const producto = props.producto
     const navigate = useNavigate()
-    const idProducto = props.idProducto
+    const context = useContext(CartContext)
+
     return(
         <>
-            <Button variant='primary' size='lg' onClick={()=>{agregarAlCarrito(idProducto)}}>
+            <Button variant='primary' size='lg' onClick={()=>{context.addCartItem(producto)}}>
                 <Cart/> Agregar al carrito
             </Button>
 

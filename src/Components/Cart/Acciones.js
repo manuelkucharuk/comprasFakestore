@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 
+import CartContext from '../../Context/CartContext'
 
-const Acciones = (props)=>{
-    const {onVaciar} = props
-    return(
+const Acciones = (props)=> {
+    const context = useContext(CartContext)
+    return (
         <>
-            <Button onClick={onVaciar}>Vaciar Carrito</Button>
-            <Button onClick={''}>Comprar</Button>
+            <Button onClick={context.vaciarCart}>VaciarCarrito</Button>
+            <Button onClick={() => 'a'}>Finalizar Compra</Button>
         </>
     )
 }
