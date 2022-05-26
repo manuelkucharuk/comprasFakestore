@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { getProductoById } from '../../Services/productosService'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import Loading from '../Loading'
+
 import CartContext from '../../Context/CartContext'
 
 const CartElement = (props) => {
@@ -32,6 +31,7 @@ const CartElement = (props) => {
             setCantidad(cantTemp)
             setSubtotal(cantTemp*producto.price)
         },
+        //eslint-disable-next-line
         [context.cart]
     )
 

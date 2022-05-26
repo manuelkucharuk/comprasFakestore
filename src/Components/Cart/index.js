@@ -35,7 +35,7 @@ const Cart = (props) =>{
                 </>
             }
             {
-                context.cart.length == 0 &&
+                context.cart.length === 0 &&
                 <Row>
                     <b>El carrito está vacío</b>
                 </Row>
