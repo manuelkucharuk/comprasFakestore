@@ -11,12 +11,13 @@ function App() {
     return (
         <AuthProvider>
         <CartProvider>
-            <Router>
+        <Router>
               <NavBar/>
               <Public/>
-            </Router>
+        </Router>
         </CartProvider>
         </AuthProvider>
+
   )
 }
 

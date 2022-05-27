@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React, { useState } from 'react'
 import AuthContext from './AuthContext'
 
 function AuthProvider(props){
@@ -9,7 +9,6 @@ function AuthProvider(props){
         setUserLogged(true)
         setUserData(data)
         localStorage.setItem("userLogged",true)
-        localStorage.setItem("userData",JSON.stringify(data))
     }
 
     const logoutUser = ()=>{
