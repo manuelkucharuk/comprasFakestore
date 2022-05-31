@@ -7,7 +7,7 @@ import {Cart} from 'react-bootstrap-icons'
 import AuthContext from '../../Context/AuthContext'
 import CartContext from '../../Context/CartContext'
 
-const Logged = ({userData})=> {
+const Logged = ()=> {
     const authContext = useContext(AuthContext)
     const cartContext = useContext(CartContext)
     const navigate = useNavigate()
