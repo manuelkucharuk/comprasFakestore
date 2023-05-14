@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AuthContext from './AuthContext'
 
-function AuthProvider(props){
+const AuthProvider = (props) => {
     const [userLogged, setUserLogged] = useState(localStorage.getItem("userLogged") || false)
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")) || {})
 
